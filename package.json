@@ -1,0 +1,30 @@
+{
+  "name": "stripe-server",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./bin/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "http-errors": "^1.8.0",
+    "jwks-rsa": "^1.12.2",
+    "mongoose": "^5.11.13",
+    "node-fetch": "^2.6.1",
+    "pino": "^6.11.0",
+    "pino-http": "^5.3.0",
+    "pino-pretty": "^4.3.0",
+    "stripe": "^8.132.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
