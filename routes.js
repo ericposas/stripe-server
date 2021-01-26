@@ -27,9 +27,9 @@ module.exports = function (app, opts) {
       url: 'https://gymwebapp.us.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
       body: `{
-        "client_id":${process.env.AUTH0_JWT_CONFIG_CLIENT_ID},
-        "client_secret":${process.env.AUTH0_JWT_CONFIG_CLIENT_SECRET},
-        "audience":${process.env.AUTH0_JWT_CONFIG_API_URL},
+        "client_id":"${process.env.AUTH0_JWT_CONFIG_CLIENT_ID}",
+        "client_secret":"${process.env.AUTH0_JWT_CONFIG_CLIENT_SECRET}",
+        "audience":"https://gymwebapp.us.auth0.com/api/v2/",
         "grant_type":"client_credentials"
       }`
     }
