@@ -14,8 +14,6 @@ module.exports = async (req, res) => {
         cancel_url: 'http://localhost:8000/',
     })
 
-    res.json({
-        id: session.id
-    })
+    res.json(session)
 
 }
