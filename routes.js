@@ -54,6 +54,43 @@ module.exports = function (app, opts) {
     }
 
   })
+  app.post('/attach-payment-method', jsonParser, async (req, res) => {
+
+    console.log(
+      req.body
+    )
+    
+    if (req.body?.paymentMethod?.id) {
+      let pmtMethodExist = await stripe.paymentMethods.retrieve(
+        req.body.paymentMethod.id
+      )
+      // res.json({ customer: pmtMethodExist.customer })
+      // res.json({ bool: pmtMethodExist.customer === null })
+      
+      if (pmtMethodExist.customer === null) {
+        if (req.body?.paymentMethod && req.body?.customer) {
+          const { paymentMethod:{ id }, customer } = req.body
+          const paymentMethodAttachResult = await stripe.paymentMethods.attach(
+            id,
+            {
+              customer
+            }
+          )
+          res.json({
+            msg: 'saving new payment method..',
+            paymentMethodAttachResult
+          })
+        } else {
+          res.json({ msg: 'no payment method in request body' })
+        }
+      } else {
+        res.json({ msg: 'payment method already exists, skipping creation' })
+      }
+    }
+
+    
+
+  })
   
   // Auth0 
   app.post('/retrieve-api-token', jsonParser, (req, res) => {
