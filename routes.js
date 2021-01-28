@@ -48,9 +48,9 @@ module.exports = function (app, opts) {
       let customer = await stripe.customers.create({
         email: req.body.email
       })
-      res.json({ msg: 'Stripe customer created!', customer })
+      res.json({ value: true, msg: 'Stripe customer created!', customer })
     } else {
-      res.json({ msg: 'Customer already exists!', customer: custExist.data[0] })
+      res.json({ value: false, msg: 'Customer already exists!', customer: custExist.data[0] })
     }
 
   })
