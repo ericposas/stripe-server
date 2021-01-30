@@ -25,6 +25,15 @@ module.exports = function (app, opts) {
   app.get('/get-list-of-products', jsonParser, getListOfProducts)
   app.post('/get-checkout-session', jsonParser, getCheckoutSessionData)
   // app.post('/post-student-data', jsonParser, postStudentData)
+  app.post('/get-payment-methods/:customer', (req, res) => {
+    
+    if (req.params.customer) {
+      let { params: { customer } } = req
+      
+
+    }
+    
+  })
   // we need to, with the API, manually create Stripe customers
   // so that we can track charges to the correct people's accounts
   app.post('/create-stripe-customer', jsonParser, async (req, res) => {
