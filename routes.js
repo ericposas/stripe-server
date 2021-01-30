@@ -69,7 +69,7 @@ module.exports = function (app, opts) {
       
       if (pmtMethodExist.customer === null) {
         if (req.body?.paymentMethod && req.body?.customer) {
-          const { paymentMethod:{ id }, customer } = req.body
+          const { paymentMethod:{ id }, customer: { id: customer } } = req.body
           const paymentMethodAttachResult = await stripe.paymentMethods.attach(
             id,
             {
