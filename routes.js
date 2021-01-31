@@ -12,6 +12,7 @@ const jsonParser = require('express').json()
 const fetch = require('node-fetch')
 const { json } = require('body-parser')
 const Stripe = require('stripe')
+const processClassPayment = require('./handlers/processClassPayment')
 const stripe = Stripe(process.env.STRIPE_TEST_SECRET_KEY)
 require('dotenv').config()
 
@@ -24,6 +25,7 @@ module.exports = function (app, opts) {
   app.post('/get-products', jsonParser, getProduct)
   app.get('/get-list-of-products', jsonParser, getListOfProducts)
   app.post('/get-checkout-session', jsonParser, getCheckoutSessionData)
+  app.post('/process-payment-for-classes', jsonParser, processClassPayment)
   // app.post('/post-student-data', jsonParser, postStudentData)
   // app.post('/get-payment-methods/:customer', jsonParser, async (req, res) => {
     
