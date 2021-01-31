@@ -27,8 +27,6 @@ module.exports = async (req, res) => {
             }
         })
 
-        console.log(subscriptions)
-
         for (let sub of subscriptions) {
             if (sub !== undefined) {
                 await stripe.subscriptions.create({
@@ -53,11 +51,6 @@ module.exports = async (req, res) => {
     
         let { id: intent_id, client_secret } = paymentIntent
         
-        // console.log(
-        //     intent_id,
-        //     client_secret 
-        // )
-    
         res.send({
             intent_id,
             client_secret
