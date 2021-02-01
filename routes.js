@@ -1,6 +1,6 @@
 'use strict'
 
-const checkoutSession = require('./handlers/checkoutSession')
+// const checkoutSession = require('./handlers/checkoutSession')
 const getProduct = require('./handlers/getProduct')
 const getListOfProducts = require('./handlers/getListOfProducts')
 const getCheckoutSessionData = require('./handlers/getCheckoutSessionData')
@@ -14,7 +14,7 @@ require('dotenv').config()
 module.exports = function (app, opts) {
 
   // Stripe
-  app.post('/create-checkout-session', jsonParser, checkoutSession)
+  // app.post('/create-checkout-session', jsonParser, checkoutSession)
   app.post('/get-products', jsonParser, getProduct)
   app.get('/get-list-of-products', jsonParser, getListOfProducts)
   app.post('/get-checkout-session', jsonParser, getCheckoutSessionData)
