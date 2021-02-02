@@ -9,7 +9,7 @@ const processClassPayment = require('./handlers/processClassPayment')
 const attachPaymentMethodToCustomer = require('./handlers/attachPaymentMethodToCustomer')
 const createStripeCustomer = require('./handlers/createStripeCustomer')
 const patchCustomerDataToStripe = require('./handlers/patchCustomerDataToStripe')
-const stripeWebHooks = require('./handlers/webhooks')
+const stripeWebHook = require('./handlers/webhook')
 const { clientToken } = require('./handlers/getAuthToken')
 const bodyParser = require('body-parser')
 require('dotenv').config()
@@ -26,7 +26,7 @@ module.exports = function (app, opts) {
   app.post('/create-stripe-customer', jsonParser, createStripeCustomer)
   app.post('/attach-payment-method', jsonParser, attachPaymentMethodToCustomer)
   // Stripe Webhooks
-  app.post('/stripe-webhook', bodyParser.raw({ 'Content-type': 'application/json' }), stripeWebHooks)
+  app.post('/stripe-webhook', bodyParser.raw({ 'Content-type': 'application/json' }), stripeWebHook)
   
   // Auth0 
   app.post('/retrieve-api-token', jsonParser, clientToken)
