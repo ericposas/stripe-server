@@ -8,6 +8,7 @@ const jsonParser = require('express').json()
 const processClassPayment = require('./handlers/processClassPayment')
 const attachPaymentMethodToCustomer = require('./handlers/attachPaymentMethodToCustomer')
 const createStripeCustomer = require('./handlers/createStripeCustomer')
+const patchCustomerDataToStripe = require('./handlers/patchCustomerDataToStripe')
 const stripeWebHooks = require('./handlers/webhooks')
 const { clientToken } = require('./handlers/getAuthToken')
 const bodyParser = require('body-parser')
@@ -17,6 +18,7 @@ module.exports = function (app, opts) {
 
   // Stripe
   // app.post('/create-checkout-session', jsonParser, checkoutSession)
+  app.patch('/update-user-data-to-stripe', jsonParser, patchCustomerDataToStripe)
   app.post('/get-products', jsonParser, getProduct)
   app.get('/get-list-of-products', jsonParser, getListOfProducts)
   app.post('/get-checkout-session', jsonParser, getCheckoutSessionData)
