@@ -7,9 +7,9 @@ const stripe = Stripe(process.env.STRIPE_TEST_SECRET_KEY)
 module.exports = (req, res) => {
 
     let event
-
+    
     try {
-        event = JSON.parse(req.body)
+        event = req.body
     } catch (error) {
         return res.status(400).send(`Webhook Error: ${error.message}`)
     }
