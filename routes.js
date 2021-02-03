@@ -11,6 +11,7 @@ const createStripeCustomer = require('./handlers/createStripeCustomer')
 const patchCustomerDataToStripe = require('./handlers/patchCustomerDataToStripe')
 const stripeWebHook = require('./handlers/webhook')
 const { clientToken } = require('./handlers/getAuthToken')
+const postUserAddressData = require('./handlers/postUserAddressData')
 // const bodyParser = require('body-parser')
 // const validateAddressRoute = require('./handlers/validateAddressRoute')
 require('dotenv').config()
@@ -26,13 +27,11 @@ module.exports = function (app, opts) {
   app.post('/process-payment-for-classes', jsonParser, processClassPayment)
   app.post('/create-stripe-customer', jsonParser, createStripeCustomer)
   app.post('/attach-payment-method', jsonParser, attachPaymentMethodToCustomer)
+  app.post('/post-user-address-data', jsonParser, postUserAddressData)
   // Stripe Webhooks
   app.post('/stripe-webhook', jsonParser, stripeWebHook)
   
   // Auth0 
   app.post('/retrieve-api-token', jsonParser, clientToken)
-
-  // Utility
-  // app.post('/address-validator', jsonParser, validateAddressRoute)
 
 }
