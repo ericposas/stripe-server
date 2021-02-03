@@ -13,14 +13,16 @@ module.exports = async (req, res) => {
     
         if (!req.body?.email) {
             res.json({
-            error: 'no email in body'
+                error: 'no email in body'
             })
         }
     
         if (!custExist.data[0]) {
-            let customer = await stripe.customers.create({
-            email: req.body.email
-            })
+            let customerData = {
+                email: req.body.email
+            }
+            if (req.body.name) { customerData.name = req.body.name }
+            let customer = await stripe.customers.create(customerData)
             res.json({ value: true, msg: 'Stripe customer created!', customer })
         } else {
             res.json({ value: false, msg: 'Customer already exists!', customer: custExist.data[0] })
